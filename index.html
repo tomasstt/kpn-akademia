@@ -12,24 +12,19 @@
       rel="stylesheet"
     />
     <title>KPN</title>
-
-
   </head>
   <body>
     <div class="container">
       <h1>Kameň | Papier | Nožnice</h1>
 
-
-     
-            <li>
-                <div class="symbol">&#x1F91C;</div>
-                <!-- Kameň -->
-                <div class="symbol">&#x1F590;</div>
-                <!-- Papier -->
-                <div class="symbol">&#x2702;</div>
-                <!-- Nožnice -->
-            </li>
-      
+      <li>
+        <div class="symbol">&#x1F91C;</div>
+        <!-- Kameň -->
+        <div class="symbol">&#x1F590;</div>
+        <!-- Papier -->
+        <div class="symbol">&#x2702;</div>
+        <!-- Nožnice -->
+      </li>
 
       <!-- Inštrukcie -->
       <h2>Inštrukcie na hru</h2>
@@ -39,11 +34,16 @@
         skončili s remízou s botom.
       </p>
 
-
-        <!-- Zapnutie hry -->
+      <!-- Zapnutie hry -->
       <button onclick="startGame()">Štart</button>
 
-     
+      <!-- Skore -->
+      <div id="score">
+        <h2>Skore</h2>
+        <p>Hráč: <span id="userScore">0</span></p>
+        <p>Bot: <span id="botScore">0</span></p>
+      </div>
+    </div>
 
     <script src="/main.js"></script>
   </body>

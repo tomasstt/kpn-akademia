@@ -31,7 +31,7 @@ button {
 
 }
 h1 {
-    height: 70px;
+    height: 0px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -63,6 +63,18 @@ li {
 
 .container {
     
-  margin: 10cm auto;
+  margin: 9cm auto;
 
+}
+
+#score {
+    margin-top: 90px;
+}
+
+#score p {
+    color:rgb(0, 0, 0);
+    font-size: 1.4em;
+    display: flex;
+padding-top: 20px;
+    justify-content:space-between;
 }
