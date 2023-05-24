@@ -13,16 +13,21 @@ body {
 
 
 
-button {
+
+ button {
     cursor: pointer;
-    display: flex;
+   
     height: 40px;
     width: 70px;
     background: rgb(0, 0, 0);
     color: white;
-    font-size: 1em;
-    place-items: center;
+    display: flex;
     place-content: center;
+    place-items: center;
+    justify-content: center;
+    align-items: center;
+   position: relative;
+   
     border: none;
     border-radius: 20px;
     margin: 1cm auto;
@@ -30,6 +35,8 @@ button {
 
 
 }
+
+
 h1 {
     height: 0px;
     display: flex;

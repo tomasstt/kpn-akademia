@@ -15,7 +15,7 @@ let choiceCount = {
   };
 let roundNum = 0;
 
-function startGame(userChoice,botChoice) {
+function startGame() {
 	alert("Ahoj, po odkliknutí tlačítka 'OK' alebo stlačení Enteru prosím zadaj: \n\n 'K' pre kameň \n 'P' pre papier \n 'N' pre nožnice \n\nVoľba je len na tebe, vyskúšaj si svoje štastie či vyhráš proti botovi! ")
 	let userInput = prompt(" 'K' pre kameň \n 'P' pre papier \n 'N' pre nožnice");
 	roundNum++;	
@@ -41,11 +41,12 @@ function startGame(userChoice,botChoice) {
 	}
 	console.log("Skore hraca:", userScore);
 	console.log("Skore bota:", botScore);
-	console.log("Historia hraca:", choiceCount.user);
+	
+	console.log("Historia hraca:", choiceCount.user, choiceCount.round);
 	console.log("Historia bota:", choiceCount.bot);
 	console.log("------------------------------------")
 	
-	
+	document.getElementById("b2").disabled = false;
 	document.getElementById("userScore").textContent = userScore;
 	document.getElementById("botScore").textContent = botScore;
 	
@@ -84,6 +85,12 @@ function makeWinner(userChoice, botChoice) {
 	}
 
 
+
+}
+
+function newGame() {
+	document.getElementById("b2").disabled = true;
+	startGame();
 
 }
 
