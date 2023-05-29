@@ -14,6 +14,7 @@ let choiceCount = {
 	  }
   };
 let roundNum = 0;
+let history = [];
 
 function startGame() {
 	alert("Ahoj, po odkliknutí tlačítka 'OK' alebo stlačení Enteru prosím zadaj: \n\n 'K' pre kameň \n 'P' pre papier \n 'N' pre nožnice \n\nVoľba je len na tebe, vyskúšaj si svoje štastie či vyhráš proti botovi! ")
@@ -33,7 +34,15 @@ function startGame() {
 		let result = makeWinner(userChoice, botChoice);
 		alert(result);
 		console.log(result);
-		
+
+		history.push({
+			round: roundNum,
+			userChoice: userChoice,
+			botChoice: botChoice,
+			result: result,
+			userScore: userScore,
+			botScore: botScore
+		  });		
 	} else {
 		alert("Nesprávne písmeno, skús znovu");
 		console.log("Nesprávne písmeno, skús znovu");
@@ -41,9 +50,9 @@ function startGame() {
 	}
 	console.log("Skore hraca:", userScore);
 	console.log("Skore bota:", botScore);
-	
-	console.log("Historia hraca:", choiceCount.user, choiceCount.round);
+	console.log("Historia hraca:", choiceCount.user);
 	console.log("Historia bota:", choiceCount.bot);
+	console.log("Historia hry:" , history)
 	console.log("------------------------------------")
 	
 	document.getElementById("b2").disabled = false;
@@ -51,9 +60,6 @@ function startGame() {
 	document.getElementById("botScore").textContent = botScore;
 	
 }
-	
-}
-
 function getRandomChoice() {
 	let choices = ["K", "P", "N"];
 	let randomNum = Math.floor(Math.random() * 3);
@@ -69,10 +75,10 @@ function makeWinner(userChoice, botChoice) {
 		(userChoice === "K" && botChoice === "N") ||
 		(userChoice === "P" && botChoice === "K") ||
 		(userChoice === "N" && botChoice === "P")
-	) {
+	) { 	
 		
 	userScore++;
-
+	
 	return "Gratulujem, vyhral si nad botom!";
 	
 
@@ -80,13 +86,10 @@ function makeWinner(userChoice, botChoice) {
 	} else {
 		
 		botScore++;
-	
 		return "Bot mal:  " +  botChoice    + " \n\nAhh, prehral si nad botom skús to znovu!";
-	}
+	}}
 
-
-
-}
+	
 
 function newGame() {
 	document.getElementById("b2").disabled = true;
@@ -102,7 +105,7 @@ function newGame() {
 
 
 
-
+}
 
 
 
