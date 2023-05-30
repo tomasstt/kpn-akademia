@@ -15,13 +15,25 @@ let choiceCount = {
   };
 let roundNum = 0;
 let history = [];
+const button2 = document.getElementById("b2")
+let userScr = document.getElementById("userScore")
+let botScr = document.getElementById("botScore")
+
 
 function startGame() {
 	alert("Ahoj, po odkliknutí tlačítka 'OK' alebo stlačení Enteru prosím zadaj: \n\n 'K' pre kameň \n 'P' pre papier \n 'N' pre nožnice \n\nVoľba je len na tebe, vyskúšaj si svoje štastie či vyhráš proti botovi! ")
 	let userInput = prompt(" 'K' pre kameň \n 'P' pre papier \n 'N' pre nožnice");
 	roundNum++;	
-	if (userInput !== "") {
-		let userChoice = userInput;
+	let userChoice = userInput;
+
+	if (!['K', 'P', 'N'].includes(userChoice)  ) {
+		alert("Nesprávne písmeno, skús znovu")
+		console.log("Nesprávne písmeno, skús znovu");
+		return ;
+	
+	}
+	
+
 		console.log(roundNum + '. hra');
 		console.log("Hrac si vybral :" + userChoice);
 		if (userChoice === "K" || userChoice === "P" || userChoice === "N" ){
@@ -43,11 +55,8 @@ function startGame() {
 			userScore: userScore,
 			botScore: botScore
 		  });		
-	} else {
-		alert("Nesprávne písmeno, skús znovu");
-		console.log("Nesprávne písmeno, skús znovu");
-	
-	}
+		
+	  
 	console.log("Skore hraca:", userScore);
 	console.log("Skore bota:", botScore);
 	console.log("Historia hraca:", choiceCount.user);
@@ -55,10 +64,12 @@ function startGame() {
 	console.log("Historia hry:" , history)
 	console.log("------------------------------------")
 	
-	document.getElementById("b2").disabled = false;
-	document.getElementById("userScore").textContent = userScore;
-	document.getElementById("botScore").textContent = botScore;
+	button2.disabled = false;
+	userScr.textContent = userScore;
+	botScr.textContent = botScore;
 	
+		}
+		
 }
 function getRandomChoice() {
 	let choices = ["K", "P", "N"];
@@ -80,19 +91,19 @@ function makeWinner(userChoice, botChoice) {
 	userScore++;
 	
 	return "Gratulujem, vyhral si nad botom!";
-	
+	}
 
 	
-	} else {
+
 		
-		botScore++;
-		return "Bot mal:  " +  botChoice    + " \n\nAhh, prehral si nad botom skús to znovu!";
-	}}
-
+	botScore++;
+	return "Bot mal:  " +  botChoice    + " \n\nAhh, prehral si nad botom skús to znovu!";
 	
 
+	
+}
 function newGame() {
-	document.getElementById("b2").disabled = true;
+
 	startGame();
 
 }
@@ -105,7 +116,7 @@ function newGame() {
 
 
 
-}
+
 
 
 
