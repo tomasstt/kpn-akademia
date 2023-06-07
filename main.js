@@ -18,51 +18,70 @@ let history = [];
 const button2 = document.getElementById("b2")
 let userScr = document.getElementById("userScore")
 let botScr = document.getElementById("botScore")
+let alertShw = false;
 
 
 function startGame() {
-	alert("Ahoj, po odkliknutí tlačítka 'OK' alebo stlačení Enteru prosím zadaj: \n\n 'K' pre kameň \n 'P' pre papier \n 'N' pre nožnice \n\nVoľba je len na tebe, vyskúšaj si svoje štastie či vyhráš proti botovi! ")
+	if (!alertShw) {
+		alert("Ahoj, po odkliknutí tlačítka 'OK' alebo stlačení Enteru prosím zadaj: \n\n 'K' pre kameň \n 'P' pre papier \n 'N' pre nožnice \n\nVoľba je len na tebe, vyskúšaj si svoje štastie či vyhráš proti botovi! ");
+		alertShw = true; 
+	  }
 	let userInput = prompt(" 'K' pre kameň \n 'P' pre papier \n 'N' pre nožnice");
 	roundNum++;	
-	let userChoice = userInput;
+	let userChoice = userInput.toUpperCase();
 
 	if (!['K', 'P', 'N'].includes(userChoice)  ) {
 		alert("Nesprávne písmeno, skús znovu")
-		console.log("Nesprávne písmeno, skús znovu");
+		
 		return ;
 	
 	}
 	
 
-		console.log(roundNum + '. hra');
-		console.log("Hrac si vybral :" + userChoice);
+		
 		if (userChoice === "K" || userChoice === "P" || userChoice === "N" ){
 	
 		
 		let botChoice = getRandomChoice();
-		console.log("Bot si vybral :" + botChoice);
 		choiceCount.user[userChoice]++;
 		choiceCount.bot[botChoice]++;
 		let result = makeWinner(userChoice, botChoice);
 		alert(result);
-		console.log(result);
+	
 
-		history.push({
-			round: roundNum,
-			userChoice: userChoice,
-			botChoice: botChoice,
-			result: result,
-			userScore: userScore,
-			botScore: botScore
-		  });		
+
+		  let historyData = {
+			Round: roundNum,
+			Player: userChoice,
+			Bot: botChoice,
+			Won: "",
+			PlayerScore: userScore,
+			BotScore: botScore
+		  };
+
+		  if (result === "Gratulujem, vyhral si nad botom!") {
+			historyData.Won = "Player ";
+		  } else if (result === "Bot mal:  " + botChoice + " \n\nAhh, prehral si nad botom skús to znovu!") {
+			historyData.Won = "Bot";
+		  } else {
+			historyData.Won = "Draw";
+		  }
+
+		let tableBody = document.querySelector(" tbody");
+
+
+		let row = document.createElement("tr");
+		for (let key in historyData) {
+		let cell = document.createElement("td");
+		cell.textContent = historyData[key];
+		row.appendChild(cell);
+		}
+		tableBody.appendChild(row);
+
+
 		
 	  
-	console.log("Skore hraca:", userScore);
-	console.log("Skore bota:", botScore);
-	console.log("Historia hraca:", choiceCount.user);
-	console.log("Historia bota:", choiceCount.bot);
-	console.log("Historia hry:" , history)
-	console.log("------------------------------------")
+	
 	
 	button2.disabled = false;
 	userScr.textContent = userScore;
@@ -78,6 +97,7 @@ function getRandomChoice() {
 }
 
 function makeWinner(userChoice, botChoice) {
+
 	if (userChoice === botChoice) {
 		
 		return "Remiza!";
@@ -89,13 +109,13 @@ function makeWinner(userChoice, botChoice) {
 	) { 	
 		
 	userScore++;
-	
+		
 	return "Gratulujem, vyhral si nad botom!";
 	}
 
 	
 
-		
+	
 	botScore++;
 	return "Bot mal:  " +  botChoice    + " \n\nAhh, prehral si nad botom skús to znovu!";
 	
@@ -107,10 +127,6 @@ function newGame() {
 	startGame();
 
 }
-
-
-
-
 
 
 
