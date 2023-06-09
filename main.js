@@ -16,8 +16,8 @@ let choiceCount = {
 let roundNum = 0;
 let history = [];
 const button2 = document.getElementById("b2")
-let userScr = document.getElementById("userScore")
-let botScr = document.getElementById("botScore")
+const userScr = document.getElementById("userScore")
+const botScr = document.getElementById("botScore")
 let alertShw = false;
 
 
